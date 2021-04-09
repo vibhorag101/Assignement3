@@ -61,7 +61,7 @@ class Polygon(Shape):
         '''
         self.polyco=A
         self.translate=self.T_t #possible error
-        self.transposematrix=np.transpose(self.translate)
+        self.transposematrix=np.transpose(self.translate) #create a tranpose for matrix multiplaction of A x transpose(t_t)
 
  
     
@@ -75,9 +75,11 @@ class Polygon(Shape):
 
         '''
 
-        transmatrix= np.dot(self.polyco,self.transposematrix)
-        xlist=transmatrix[0]
-        ylist=transmatrix[1]
+        transmatrix= np.dot(self.polyco,self.transposematrix) #matrix multiplication done
+        xlist=transmatrix[0] #first column of matrix having changed x co-ordinates
+        ylist=transmatrix[1] #second column of matrix having changed y coordinates
+
+        return (xlist,ylist)
 
 
 
