@@ -65,7 +65,7 @@ class Polygon(Shape):
         self.translate=self.T_t #possible error
         self.scale=self.T_s
         self.rotate=self.T_r
-        self.transposematrix=np.transpose(self.translate) #create a tranpose for matrix multiplaction of A x transpose(t_t)
+         #create a tranpose for matrix multiplaction of A x transpose(t_t)
 
  
     
@@ -78,6 +78,8 @@ class Polygon(Shape):
         This function returns the final coordinates
 
         '''
+        self.transposematrix=np.transpose(self.translate)
+
         # add the calling function
 
         transmatrix= np.dot(self.polyco,self.transposematrix) #matrix multiplication done
