@@ -95,9 +95,12 @@ class Polygon(Shape):
     
         This function returns the final coordinates
         '''
+        scalematrix=np.dot(self.polyco,self.scale()) # multiply A x scale matrix
+        scalexlist=scalematrix[0] # x coordinates by selection 1st column
+        scaleylist=scalematrix[1] # y coordinates by selcting 2nd column
+        return(scalexlist,scaleylist)
 
         
- 
     
     def rotate(self, deg, rx = 0, ry = 0):
         '''
@@ -107,7 +110,11 @@ class Polygon(Shape):
     
         This function returns the final coordinates
         '''
-        pass
+        
+
+
+        
+
     
 
     def plot(self):
