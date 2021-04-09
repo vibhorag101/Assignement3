@@ -64,6 +64,7 @@ class Polygon(Shape):
         self.polyco=A
         self.translate=self.T_t #possible error
         self.scale=self.T_s
+        self.rotate=self.T_r
         self.transposematrix=np.transpose(self.translate) #create a tranpose for matrix multiplaction of A x transpose(t_t)
 
  
@@ -117,7 +118,7 @@ class Polygon(Shape):
         scalexlist=(scalematrix[0])+self.meanx # x coordinates by selection 1st column+cX
         scaleylist=scalematrix[1]+self.meany # y coordinates by selcting 2nd column+ cY
         return(scalexlist,scaleylist)
-        # center part not done
+        # center part done
         
     
     def rotate(self, deg, rx = 0, ry = 0):
@@ -128,6 +129,17 @@ class Polygon(Shape):
     
         This function returns the final coordinates
         '''
+        self.newrotatex=self.polyco[0]-rx
+
+        self.newrotatey=self.polyco[1]-ry
+
+        self.rotatefinalmatrix=np.array([self.newrotatex,self.newrotatey,self.polyco[2]])
+        rotatematrix=np.dot(self.rotatefinalmatrix,self.rotate())
+        rotatexlist=(rotatematrix[0])+ rx # x coordinates by selection 1st column+cX
+        rotateylist=rotatematrix[1]+ ry # y coordinates by selcting 2nd column+ cY
+
+        return(rotatexlist,rotateylist)
+
 
 
 
