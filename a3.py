@@ -59,6 +59,7 @@ class Polygon(Shape):
         '''
         Initializations here
         '''
+        Shape.__init__(self)
         self.polyco=A
         self.translate=self.T_t #possible error
         self.scale=self.T_s
@@ -75,6 +76,7 @@ class Polygon(Shape):
         This function returns the final coordinates
 
         '''
+        # add the calling function
 
         transmatrix= np.dot(self.polyco,self.transposematrix) #matrix multiplication done
         xlist=transmatrix[0] #first column of matrix having changed x co-ordinates
@@ -99,7 +101,7 @@ class Polygon(Shape):
         scalexlist=scalematrix[0] # x coordinates by selection 1st column
         scaleylist=scalematrix[1] # y coordinates by selcting 2nd column
         return(scalexlist,scaleylist)
-
+        # center part not done
         
     
     def rotate(self, deg, rx = 0, ry = 0):
@@ -110,7 +112,12 @@ class Polygon(Shape):
     
         This function returns the final coordinates
         '''
-        
+
+
+
+
+
+
 
 
         
