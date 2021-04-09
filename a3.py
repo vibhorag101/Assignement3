@@ -62,9 +62,9 @@ class Polygon(Shape):
         '''
         Shape.__init__(self)
         self.polyco=A
-        self.translate=self.T_t #possible error
-        self.scale=self.T_s
-        self.rotate=self.T_r
+        # self.translate=self.T_t #possible error
+        # self.scale=self.T_s
+        # self.rotate=self.T_r
          #create a tranpose for matrix multiplaction of A x transpose(t_t)
 
  
@@ -78,16 +78,16 @@ class Polygon(Shape):
         This function returns the final coordinates
 
         '''
-        self.transposematrix=np.transpose(self.translate)
+        Shape.translate(self,dx,dy)
+        transposematrix=np.transpose(self.T_t)
 
         # add the calling function
 
-        transmatrix= np.dot(self.polyco,self.transposematrix) #matrix multiplication done
-        xlist=transmatrix[0] #first column of matrix having changed x co-ordinates
-        ylist=transmatrix[1] #second column of matrix having changed y coordinates
+        transmatrix= np.dot(self.polyco,transposematrix) #matrix multiplication done
+        xlist=transmatrix[:,0] #first column of matrix having changed x co-ordinates
+        ylist=transmatrix[:,1] #second column of matrix having changed y coordinates
 
         return (xlist,ylist)
-
 
 
         
@@ -101,10 +101,14 @@ class Polygon(Shape):
     
         This function returns the final coordinates
         '''
+
+        Shape.scale(self,sx,sy)
+
+
         self.columnsum=self.polyco.sum(axis=0)
-        self.centerx=float(self.columnsum[0]) #calculate colum sumn of x
-        self.centery=float(self.columnsum[1]) #calculate colum sum of y
-        self.number=float(self.columnsum[2])  # calculate n for division
+        self.centerx=float(self.columnsum[:,0]) #calculate colum sumn of x
+        self.centery=float(self.columnsum[:,1]) #calculate colum sum of y
+        self.number=float(self.columnsum[:,2])  # calculate n for division
 
         self.meanx=self.centerx/self.number #final cX
 
@@ -116,7 +120,7 @@ class Polygon(Shape):
 
         self.finalmatrix=np.array([self.newx,self.newy,self.polyco[2]]) #matrix with changed x
 
-        scalematrix=np.dot(self.finalmatrix,self.scale()) # multiply A x scale matrix
+        scalematrix=np.dot(self.finalmatrix,self.T_s) # multiply A x scale matrix
         scalexlist=(scalematrix[0])+self.meanx # x coordinates by selection 1st column+cX
         scaleylist=scalematrix[1]+self.meany # y coordinates by selcting 2nd column+ cY
         return(scalexlist,scaleylist)
@@ -131,16 +135,19 @@ class Polygon(Shape):
     
         This function returns the final coordinates
         '''
+        Shape.rotate(self,deg)
+
         self.newrotatex=self.polyco[0]-rx
 
         self.newrotatey=self.polyco[1]-ry
 
         self.rotatefinalmatrix=np.array([self.newrotatex,self.newrotatey,self.polyco[2]])
-        rotatematrix=np.dot(self.rotatefinalmatrix,self.rotate())
+        rotatematrix=np.dot(self.rotatefinalmatrix,self.T_r)
         rotatexlist=(rotatematrix[0])+ rx # x coordinates by selection 1st column+cX
         rotateylist=rotatematrix[1]+ ry # y coordinates by selcting 2nd column+ cY
 
-        return(rotatexlist,rotateylist)
+
+        return(np.round(rotatexlist,2),np.round(rotateylist,2))
 
 
 
