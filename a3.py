@@ -59,7 +59,10 @@ class Polygon(Shape):
         '''
         Initializations here
         '''
-        pass
+        self.polyco=A
+        self.translate=self.T_t #possible error
+        self.transposematrix=np.transpose(self.translate)
+
  
     
     def translate(self, dx, dy):
@@ -69,8 +72,16 @@ class Polygon(Shape):
         This function takes 2 arguments: dx and dy
     
         This function returns the final coordinates
+
         '''
-        pass
+
+        transmatrix= np.dot(self.polyco,self.transposematrix)
+        xlist=transmatrix[0]
+        ylist=transmatrix[1]
+
+
+
+        
 
     
     def scale(self, sx, sy):
