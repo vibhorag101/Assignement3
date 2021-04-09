@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from numpy.core.fromnumeric import mean
 # NO other imports are allowed
 
 class Shape:
@@ -97,9 +98,24 @@ class Polygon(Shape):
     
         This function returns the final coordinates
         '''
-        scalematrix=np.dot(self.polyco,self.scale()) # multiply A x scale matrix
-        scalexlist=scalematrix[0] # x coordinates by selection 1st column
-        scaleylist=scalematrix[1] # y coordinates by selcting 2nd column
+        self.columnsum=self.polyco.sum(axis=0)
+        self.centerx=float(self.columnsum[0]) #calculate colum sumn of x
+        self.centery=float(self.columnsum[1]) #calculate colum sum of y
+        self.number=float(self.columnsum[2])  # calculate n for division
+
+        self.meanx=self.centerx/self.number #final cX
+
+        self.meany=self.centerx/self.number #final cY
+
+        self.newx=self.polyco[0]-self.meanx
+
+        self.newy=self.polyco[1]-self.meany
+
+        self.finalmatrix=np.array([self.newx,self.newy,self.polyco[2]]) #matrix with changed x
+
+        scalematrix=np.dot(self.finalmatrix,self.scale()) # multiply A x scale matrix
+        scalexlist=(scalematrix[0])+self.meanx # x coordinates by selection 1st column+cX
+        scaleylist=scalematrix[1]+self.meany # y coordinates by selcting 2nd column+ cY
         return(scalexlist,scaleylist)
         # center part not done
         
