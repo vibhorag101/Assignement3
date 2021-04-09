@@ -61,11 +61,12 @@ class Polygon(Shape):
         '''
         self.polyco=A
         self.translate=self.T_t #possible error
+        self.scale=self.T_s
         self.transposematrix=np.transpose(self.translate) #create a tranpose for matrix multiplaction of A x transpose(t_t)
 
  
     
-    def translate(self, dx, dy):
+    def translate(self, dx, dy): # dx=dy
         '''
         Function to translate the polygon
     
@@ -94,7 +95,8 @@ class Polygon(Shape):
     
         This function returns the final coordinates
         '''
-        pass
+
+        
  
     
     def rotate(self, deg, rx = 0, ry = 0):
