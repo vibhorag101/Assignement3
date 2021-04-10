@@ -111,16 +111,14 @@ class Polygon(Shape):
         self.centerx=float(self.columnsum[0]) #calculate colum sumn of x
         self.centery=float(self.columnsum[1]) #calculate colum sum of y
         self.number=float(self.columnsum[2])  # calculate n for division
-        print(self.centerx)
-        print(self.centery)
-        print(self.number)
+
 
         self.meanx=self.centerx/self.number #final cX
 
-        self.meany=self.centerx/self.number #final cY
+        self.meany=self.centery/self.number #final cY
 
         self.newx=((self.polyco[:,0]-self.meanx))
-        print(self.newx)
+
         
         
 
@@ -128,7 +126,7 @@ class Polygon(Shape):
 
         # self.finalmatrix=(np.array([self.newx,self.newy,self.polyco[:,2]])) #matrix with changed x
         self.finalmatrix=np.column_stack((self.newx,self.newy,self.polyco[:,2]))
-        print(self.finalmatrix)
+
 
         scalematrix=np.dot(self.finalmatrix,self.T_s) # multiply A x scale matrix
         scalexlist=(scalematrix[:,0])+self.meanx # x coordinates by selection 1st column+cX
