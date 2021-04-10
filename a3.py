@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from numpy.core.fromnumeric import mean
+from numpy.core.fromnumeric import mean, shape, transpose
 # NO other imports are allowed
 
 class Shape:
@@ -200,8 +200,10 @@ class Circle(Shape):
         '''
         self.xcord=x
         self.ycord=y
-        self.criclerad=radius
+        self.circlerad=radius
         self.matrix=np.array([[self.xcord,self.ycord,1],[0,0,1],[0,0,1]])
+
+        
 
 
 
@@ -215,6 +217,18 @@ class Circle(Shape):
     
         This function returns the final coordinates and the radius
         '''
+        Shape.translate(self,dx,dy)
+        transposematrix=np.transpose(self.T_t)
+
+        transmatrix=np.dot(self.matrix,transposematrix)
+        xlist=np.round(transmatrix[:,0],2) #first column of matrix having changed x co-ordinates
+        ylist=np.round(transmatrix[:,1],2) #second column of matrix having changed y coordinates
+        self.matrix=np.column_stack((xlist,ylist,self.matrix[:,2]))
+        newxcord=transmatrix[0,0]
+        newycord=transmatrix[0,1]
+
+        return(np.round(newxcord,2),np.round(newycord,2),self.circlerad)
+
         
 
  
@@ -238,6 +252,7 @@ class Circle(Shape):
     
         This function returns the final coordinates and the radius
         '''
+        
         pass
  
     
