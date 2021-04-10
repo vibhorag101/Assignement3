@@ -84,8 +84,8 @@ class Polygon(Shape):
         # add the calling function
 
         transmatrix= np.dot(self.polyco,transposematrix) #matrix multiplication done
-        xlist=transmatrix[:,0] #first column of matrix having changed x co-ordinates
-        ylist=transmatrix[:,1] #second column of matrix having changed y coordinates
+        xlist=np.round(transmatrix[:,0],2) #first column of matrix having changed x co-ordinates
+        ylist=np.round(transmatrix[:,1],2) #second column of matrix having changed y coordinates
 
         return (xlist,ylist)
 
@@ -106,24 +106,32 @@ class Polygon(Shape):
 
 
         self.columnsum=self.polyco.sum(axis=0)
-        self.centerx=float(self.columnsum[:,0]) #calculate colum sumn of x
-        self.centery=float(self.columnsum[:,1]) #calculate colum sum of y
-        self.number=float(self.columnsum[:,2])  # calculate n for division
+        self.centerx=float(self.columnsum[0]) #calculate colum sumn of x
+        self.centery=float(self.columnsum[1]) #calculate colum sum of y
+        self.number=float(self.columnsum[2])  # calculate n for division
+        print(self.centerx)
+        print(self.centery)
+        print(self.number)
 
         self.meanx=self.centerx/self.number #final cX
 
         self.meany=self.centerx/self.number #final cY
 
-        self.newx=self.polyco[0]-self.meanx
+        self.newx=((self.polyco[:,0]-self.meanx))
+        print(self.newx)
+        
+        
 
-        self.newy=self.polyco[1]-self.meany
+        self.newy=(self.polyco[:,1]-self.meany)
 
-        self.finalmatrix=np.array([self.newx,self.newy,self.polyco[2]]) #matrix with changed x
+        # self.finalmatrix=(np.array([self.newx,self.newy,self.polyco[:,2]])) #matrix with changed x
+        self.finalmatrix=np.column_stack((self.newx,self.newy,self.polyco[:,0]))
+        print(self.finalmatrix)
 
         scalematrix=np.dot(self.finalmatrix,self.T_s) # multiply A x scale matrix
-        scalexlist=(scalematrix[0])+self.meanx # x coordinates by selection 1st column+cX
-        scaleylist=scalematrix[1]+self.meany # y coordinates by selcting 2nd column+ cY
-        return(scalexlist,scaleylist)
+        scalexlist=(scalematrix[:,0])+self.meanx # x coordinates by selection 1st column+cX
+        scaleylist=scalematrix[:,1]+self.meany # y coordinates by selcting 2nd column+ cY
+        return(np.round(scalexlist,2),np.round(scaleylist,2))
         # center part done
         
     
@@ -137,9 +145,9 @@ class Polygon(Shape):
         '''
         Shape.rotate(self,deg)
 
-        self.newrotatex=self.polyco[0]-rx
+        self.newrotatex=self.polyco[:,0]-rx
 
-        self.newrotatey=self.polyco[1]-ry
+        self.newrotatey=self.polyco[:,1]-ry
 
         self.rotatefinalmatrix=np.array([self.newrotatex,self.newrotatey,self.polyco[2]])
         rotatematrix=np.dot(self.rotatefinalmatrix,self.T_r)
