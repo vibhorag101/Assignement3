@@ -151,13 +151,14 @@ class Polygon(Shape):
 
         # self.rotatefinalmatrix=np.array([self.newrotatex,self.newrotatey,self.polyco[2]])
         self.rotatefinalmatrix=np.column_stack((self.newrotatex,self.newrotatey,self.polyco[:,0]))
-        rotatematrix=np.dot(self.rotatefinalmatrix,self.T_r)
+        print(self.rotatefinalmatrix)
+        rotatematrix=np.dot(self.rotatefinalmatrix,np.transpose(self.T_r))
+        print(rotatematrix)
         rotatexlist=(rotatematrix[:,0])+ rx # x coordinates by selection 1st column+cX
-        rotateylist=rotatematrix[:,1]+ ry # y coordinates by selcting 2nd column+ cY
+        rotateylist=(rotatematrix[:,1])+ ry # y coordinates by selcting 2nd column+ cY
 
 
         return(np.round(rotatexlist,2),np.round(rotateylist,2))
-
 
 
 
