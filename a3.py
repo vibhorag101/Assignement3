@@ -201,6 +201,8 @@ class Circle(Shape):
         self.xcord=x
         self.ycord=y
         self.criclerad=radius
+        self.matrix=np.array([[self.xcord,self.ycord,1],[0,0,1],[0,0,1]])
+
 
 
 
@@ -213,11 +215,8 @@ class Circle(Shape):
     
         This function returns the final coordinates and the radius
         '''
-        self.newx= self.xcord+ dx
-        self.newy= self.ycord + dy
-        self.xcord= self.newx
-        self.ycord=self.newy
-        return(self.newx,self.newy,self.criclerad)
+        
+
  
         
     def scale(self, sx):
