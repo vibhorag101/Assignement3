@@ -203,6 +203,7 @@ class Circle(Shape):
         self.criclerad=radius
 
 
+
     
     def translate(self, dx, dy):
         '''
@@ -212,7 +213,11 @@ class Circle(Shape):
     
         This function returns the final coordinates and the radius
         '''
-        pass
+        self.newx= self.xcord+ dx
+        self.newy= self.ycord + dy
+        self.xcord= self.newx
+        self.ycord=self.newy
+        return(self.newx,self.newy,self.criclerad)
  
         
     def scale(self, sx):
