@@ -62,9 +62,9 @@ class Polygon(Shape):
         '''
         Shape.__init__(self)
         self.polyco=A
-        # self.translate=self.T_t #possible error
-        # self.scale=self.T_s
-        # self.rotate=self.T_r
+        self.translate1=self.T_t #possible error
+        self.scale1=self.T_s
+        self.rotate1=self.T_r
          #create a tranpose for matrix multiplaction of A x transpose(t_t)
 
  
@@ -86,6 +86,8 @@ class Polygon(Shape):
         transmatrix= np.dot(self.polyco,transposematrix) #matrix multiplication done
         xlist=np.round(transmatrix[:,0],2) #first column of matrix having changed x co-ordinates
         ylist=np.round(transmatrix[:,1],2) #second column of matrix having changed y coordinates
+
+        self.polyco=np.column_stack((xlist,ylist,self.polyco[:,2]))
 
         return (xlist,ylist)
 
@@ -125,12 +127,13 @@ class Polygon(Shape):
         self.newy=(self.polyco[:,1]-self.meany)
 
         # self.finalmatrix=(np.array([self.newx,self.newy,self.polyco[:,2]])) #matrix with changed x
-        self.finalmatrix=np.column_stack((self.newx,self.newy,self.polyco[:,0]))
+        self.finalmatrix=np.column_stack((self.newx,self.newy,self.polyco[:,2]))
         print(self.finalmatrix)
 
         scalematrix=np.dot(self.finalmatrix,self.T_s) # multiply A x scale matrix
         scalexlist=(scalematrix[:,0])+self.meanx # x coordinates by selection 1st column+cX
         scaleylist=scalematrix[:,1]+self.meany # y coordinates by selcting 2nd column+ cY
+        self.polyco=np.column_stack((np.round(scalexlist),np.round(scaleylist),self.polyco[:,2]))
         return(np.round(scalexlist,2),np.round(scaleylist,2))
         # center part done
         
@@ -150,12 +153,14 @@ class Polygon(Shape):
         self.newrotatey=self.polyco[:,1]-ry
 
         # self.rotatefinalmatrix=np.array([self.newrotatex,self.newrotatey,self.polyco[2]])
-        self.rotatefinalmatrix=np.column_stack((self.newrotatex,self.newrotatey,self.polyco[:,0]))
-        print(self.rotatefinalmatrix)
+        self.rotatefinalmatrix=np.column_stack((self.newrotatex,self.newrotatey,self.polyco[:,2]))
+        
         rotatematrix=np.dot(self.rotatefinalmatrix,np.transpose(self.T_r))
-        print(rotatematrix)
+        self.polyco=rotatematrix
         rotatexlist=(rotatematrix[:,0])+ rx # x coordinates by selection 1st column+cX
         rotateylist=(rotatematrix[:,1])+ ry # y coordinates by selcting 2nd column+ cY
+
+        self.polyco=np.column_stack((np.round(rotatexlist,2),np.round(rotateylist,2),self.polyco[:,2]))
 
 
         return(np.round(rotatexlist,2),np.round(rotateylist,2))
