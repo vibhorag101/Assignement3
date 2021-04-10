@@ -198,7 +198,10 @@ class Circle(Shape):
         '''
         Initializations here
         '''
-        pass
+        self.xcord=x
+        self.ycord=y
+        self.criclerad=radius
+
 
     
     def translate(self, dx, dy):
