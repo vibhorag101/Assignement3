@@ -258,20 +258,26 @@ class Circle(Shape):
 
         self.newrotatex=self.matrix[:,0]-rx
 
+
         self.newrotatey=self.matrix[:,1]-ry
+
 
         # self.rotatefinalmatrix=np.array([self.newrotatex,self.newrotatey,self.polyco[2]])
         self.rotatefinalmatrix=np.column_stack((self.newrotatex,self.newrotatey,self.matrix[:,2]))
+
         
         rotatematrix=np.dot(self.rotatefinalmatrix,np.transpose(self.T_r))
+        
         self.polyco=rotatematrix
         rotatexlist=(rotatematrix[:,0])+ rx # x coordinates by selection 1st column+cX
+        
         rotateylist=(rotatematrix[:,1])+ ry # y coordinates by selcting 2nd column+ cY
 
         self.matrix=np.column_stack((np.round(rotatexlist,2),np.round(rotateylist,2),self.matrix[:,2]))
+        
 
 
-        return(np.round(rotatematrix[0,0],2),np.round(rotatematrix[0,1],2),self.circlerad)
+        return(np.round(rotatexlist[0],2),np.round(rotateylist[0],2),self.circlerad)
 
 
         
