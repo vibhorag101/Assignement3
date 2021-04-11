@@ -69,7 +69,7 @@ class Polygon(Shape):
 
  
     
-    def translate(self, dx, dy): # dx=dy
+    def translate(self, dx, dy=None): # dx=dy
         '''
         Function to translate the polygon
     
@@ -78,6 +78,8 @@ class Polygon(Shape):
         This function returns the final coordinates
 
         '''
+        if dy is None:
+            dy=dx
         Shape.translate(self,dx,dy)
         transposematrix=np.transpose(self.T_t)
 
@@ -95,7 +97,7 @@ class Polygon(Shape):
         
 
     
-    def scale(self, sx, sy):
+    def scale(self, sx, sy=None):
         '''
         Function to scale the polygon
     
@@ -103,6 +105,8 @@ class Polygon(Shape):
     
         This function returns the final coordinates
         '''
+        if sy is None:
+            sy=sx
 
         Shape.scale(self,sx,sy)
 
@@ -144,6 +148,7 @@ class Polygon(Shape):
     
         This function returns the final coordinates
         '''
+        
         Shape.rotate(self,deg)
 
         self.newrotatex=self.polyco[:,0]-rx
@@ -209,7 +214,7 @@ class Circle(Shape):
 
 
     
-    def translate(self, dx, dy):
+    def translate(self, dx, dy=None):
         '''
         Function to translate the circle
     
@@ -217,6 +222,8 @@ class Circle(Shape):
     
         This function returns the final coordinates and the radius
         '''
+        if dy is None:
+            dy=dx
         Shape.translate(self,dx,dy)
         transposematrix=np.transpose(self.T_t)
 
