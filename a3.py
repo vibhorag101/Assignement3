@@ -233,6 +233,8 @@ class Circle(Shape):
         '''
         if dy is None:
             dy=dx
+        self.circeloldcord=(self.xcord,self.ycord)
+        self.circleoldrad=self.circlerad
         Shape.translate(self,dx,dy)
         transposematrix=np.transpose(self.T_t)
 
@@ -257,6 +259,8 @@ class Circle(Shape):
     
         This function returns the final coordinates and the radius
         '''
+        self.circeloldcord=(self.xcord,self.ycord)
+        self.circleoldrad=self.circlerad
         newradius=(self.circlerad)*sx
         self.circlerad=newradius
         return(np.round(self.matrix[0,0],2),np.round(self.matrix[0,1],2),round(newradius,2))
@@ -270,6 +274,8 @@ class Circle(Shape):
     
         This function returns the final coordinates and the radius
         '''
+        self.circeloldcord=(self.xcord,self.ycord)
+        self.circleoldrad=self.circlerad
         Shape.rotate(self,deg)
 
         self.newrotatex=self.matrix[:,0]-rx
@@ -311,7 +317,14 @@ class Circle(Shape):
     
         This function does not return anything
         '''
-        
+        circle = plt.Circle(self.circeloldcord,self.circleoldrad, color='g', fill=False,linestyle="dashed")
+        fig, ax = plt.subplots() 
+        circle = plt.Circle((float(self.matrix[0,0]),float(self.matrix[0,1])),self.circlerad, color='g', fill=False)
+        fig, ax = plt.subplots()   # returns figure layout and an array of axes for each subplot. Number of rows and columns can be specified as well.
+
+        ax.add_patch(circle)
+        plt.show()       
+
         
         
 
