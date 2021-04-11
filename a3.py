@@ -1,3 +1,4 @@
+from newtsting import hello
 from unittest.main import main
 import numpy as np
 import matplotlib.pyplot as plt
@@ -200,7 +201,7 @@ class Polygon(Shape):
     
         This function does not return anything
         '''
-        
+
         plt.plot(self.oldxcords,self.oldycords,linestyle="dashed")
         plt.plot(self.polyco[:,0],self.polyco[:,1])
         plt.show()
@@ -354,7 +355,10 @@ if __name__ == "__main__":
         for j in range(userquery):
             querylist=input("enter query\n").split()
             if querylist[0]=="T":
-                print(menu.translate(float(querylist[1]),float(querylist[2])))
+                if len(querylist)==2:
+                    print(menu.translate(float(querylist[1])))
+                elif len(querylist)==3:
+                    print(menu.translate(float(querylist[1]),float(querylist[2])))
             
             elif querylist[0]=="R":
                 if len(querylist)==2:
@@ -372,6 +376,58 @@ if __name__ == "__main__":
                     print(menu.translate(float(querylist[1])))
                 elif len(querylist)==3:
                     print(menu.translate(float(querylist[1],float[querylist[2]])))
+
+
+
+
+    if usershape==0 and userverbose==1:
+        mainlist=[]
+        polysides=int(input("enter the number of sides in the polygon\n"))
+        for i in range(polysides):
+            initlist=list(map(float,input("enter x y space seperated\n").split()))
+            initlist.append(1)
+            mainlist.append(initlist)
+        finalcord=np.array(mainlist)
+        menu=Polygon(finalcord)
+
+
+        userquery=int(input("enter the number of query you want to perform\n"))
+        for j in range(userquery):
+            querylist=input("enter query\n").split()
+            if querylist[0]=="T":
+                if len(querylist)==2:
+                    menu.translate(float(querylist[1]))
+                    menu.plot()
+                elif len(querylist)==3:
+                    menu.translate(float(querylist[1]),float(querylist[2]))
+                    menu.plot()
+            
+            elif querylist[0]=="R":
+                if len(querylist)==2:
+                    menu.rotate(float(querylist[1]))
+                    menu.plot()
+
+                elif len(querylist)==3:
+                    menu.rotate(float(querylist[1]),float(querylist[2]))
+                    menu.plot()
+
+            elif querylist[0]=="S":
+                if len(querylist)==2:
+                    menu.scale(float(querylist[1]))
+                    menu.plot()
+
+                if len(querylist)==3:
+                    menu.scale(float(querylist[1]),float(querylist[2]))
+                    menu.plot()
+
+            elif querylist[0]=="T":
+                if len(querylist)==2:
+                    menu.translate(float(querylist[1]))
+                    menu.plot()
+                elif len(querylist)==3:
+                    menu.translate(float(querylist[1],float[querylist[2]]))
+                    menu.plot()
+
 
 
 
