@@ -318,13 +318,14 @@ class Circle(Shape):
         This function does not return anything
         '''
         circle = plt.Circle(self.circeloldcord,self.circleoldrad, color='g', fill=False,linestyle="dashed")
-        fig, ax = plt.subplots() 
-        circle = plt.Circle((float(self.matrix[0,0]),float(self.matrix[0,1])),self.circlerad, color='g', fill=False)
-        fig, ax = plt.subplots()   # returns figure layout and an array of axes for each subplot. Number of rows and columns can be specified as well.
-
+        # fig, ax = plt.subplots()
+        circle2 = plt.Circle((float(self.matrix[0,0]),float(self.matrix[0,1])),self.circlerad, color='g', fill=False)
+        fig, ax = plt.subplots()  
         ax.add_patch(circle)
-        plt.show()       
-
+        ax.add_patch(circle2)
+        ax.set(xlim=(-20, 20), ylim = (-20, 20))
+        ax.set_aspect(1)
+        plt.show()
         
         
 
@@ -332,4 +333,4 @@ if __name__ == "__main__":
     '''
     Add menu here as mentioned in the sample output section of the assignment document.
     '''
-    pass
+    
