@@ -200,6 +200,7 @@ class Polygon(Shape):
     
         This function does not return anything
         '''
+        
         plt.plot(self.oldxcords,self.oldycords,linestyle="dashed")
         plt.plot(self.polyco[:,0],self.polyco[:,1])
         plt.show()
@@ -335,21 +336,52 @@ if __name__ == "__main__":
     '''
     Add menu here as mentioned in the sample output section of the assignment document.
     '''
-    userverbose=int(input("enter 0 if you dont want graph otherwise enter 1"))
-    usershape=int(input("enter 0 for polygon or 1 for circle"))
+    userverbose=int(input("enter 0 if you dont want graph otherwise enter 1\n"))
+    usershape=int(input("enter 0 for polygon or 1 for circle\n"))
 
-    if usershape==0:
+    if usershape==0 and userverbose==0:
         mainlist=[]
-        polysides=int(input("enter the number of sides in the polygon"))
+        polysides=int(input("enter the number of sides in the polygon\n"))
         for i in range(polysides):
-            initlist=list(map(float,input("enter x y space seperated").split()))
+            initlist=list(map(float,input("enter x y space seperated\n").split()))
             initlist.append(1)
             mainlist.append(initlist)
         finalcord=np.array(mainlist)
+        menu=Polygon(finalcord)
 
-        userquery=int(input("enter the number of query you want to perform"))
+
+        userquery=int(input("enter the number of query you want to perform\n"))
         for j in range(userquery):
+            querylist=input("enter query\n").split()
+            if querylist[0]=="T":
+                print(menu.translate(float(querylist[1]),float(querylist[2])))
             
+            elif querylist[0]=="R":
+                if len(querylist)==2:
+                    print(menu.rotate(float(querylist[1])))
+                elif len(querylist)==3:
+                    print(menu.rotate(float(querylist[1]),float(querylist[2])))
+            elif querylist[0]=="S":
+                if len(querylist)==2:
+                    print(menu.scale(float(querylist[1])))
+                if len(querylist)==3:
+                    print(menu.scale(float(querylist[1]),float(querylist[2])))
+
+            elif querylist[0]=="T":
+                if len(querylist)==2:
+                    print(menu.translate(float(querylist[1])))
+                elif len(querylist)==3:
+                    print(menu.translate(float(querylist[1],float[querylist[2]])))
+
+
+
+
+
+
+
+
+
+
 
 
 
