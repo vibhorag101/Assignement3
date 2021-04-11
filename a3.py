@@ -432,6 +432,37 @@ if __name__ == "__main__":
                     menu.translate(float(querylist[1],float[querylist[2]]))
                     menu.plot()
 
+    if usershape==1 and userverbose==0:
+
+        initlist=list(map(float,input("enter a b r space seperated\n").split()))
+        menu=Circle(initlist[0],initlist[1],initlist[2])
+
+
+        userquery=int(input("enter the number of query you want to perform\n"))
+        for j in range(userquery):
+            querylist=input("enter query\n").split()
+            if querylist[0]=="T":
+                if len(querylist)==2:
+                    print(menu.translate(float(querylist[1])))
+                elif len(querylist)==3:
+                    print(menu.translate(float(querylist[1]),float(querylist[2])))
+            
+            elif querylist[0]=="R":
+                if len(querylist)==2:
+                    print(menu.rotate(float(querylist[1])))
+                elif len(querylist)==3:
+                    print(menu.rotate(float(querylist[1]),float(querylist[2])))
+            elif querylist[0]=="S":
+                if len(querylist)==2:
+                    print(menu.scale(float(querylist[1])))
+
+            elif querylist[0]=="T":
+                if len(querylist)==2:
+                    print(menu.translate(float(querylist[1])))
+                elif len(querylist)==3:
+                    print(menu.translate(float(querylist[1],float[querylist[2]])))
+
+
 
 
 
