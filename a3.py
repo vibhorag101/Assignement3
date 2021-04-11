@@ -1,4 +1,4 @@
-from newtsting import hello
+
 from unittest.main import main
 import numpy as np
 import matplotlib.pyplot as plt
@@ -201,9 +201,13 @@ class Polygon(Shape):
     
         This function does not return anything
         '''
+        n=len(self.oldxcords)
 
-        plt.plot(self.oldxcords,self.oldycords,linestyle="dashed")
-        plt.plot(self.polyco[:,0],self.polyco[:,1])
+        plt.plot(self.oldxcords,self.oldycords,linestyle="dashed",color="r")
+        plt.plot(np.array([self.oldxcords[0],self.oldxcords[n-1]]),np.array([self.oldycords[0],self.oldycords[n-1]]),linestyle="dashed",color="r")
+        plt.plot(self.polyco[:,0],self.polyco[:,1],color="b")
+        plt.plot(np.array([self.polyco[0,0],self.polyco[n-1,0]]),np.array([self.polyco[0,1],self.polyco[n-1,1]]),color="b")
+        
         plt.show()
         
 
