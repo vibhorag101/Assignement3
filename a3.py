@@ -1,6 +1,8 @@
+from unittest.main import main
 import numpy as np
 import matplotlib.pyplot as plt
 from numpy.core.fromnumeric import mean, shape, transpose
+from numpy.testing import verbose
 # NO other imports are allowed
 
 class Shape:
@@ -333,4 +335,24 @@ if __name__ == "__main__":
     '''
     Add menu here as mentioned in the sample output section of the assignment document.
     '''
+    userverbose=int(input("enter 0 if you dont want graph otherwise enter 1"))
+    usershape=int(input("enter 0 for polygon or 1 for circle"))
+
+    if usershape==0:
+        mainlist=[]
+        polysides=int(input("enter the number of sides in the polygon"))
+        for i in range(polysides):
+            initlist=list(map(float,input("enter x y space seperated").split()))
+            initlist.append(1)
+            mainlist.append(initlist)
+        finalcord=np.array(mainlist)
+
+        userquery=int(input("enter the number of query you want to perform"))
+        for j in range(userquery):
+            
+
+
+
+
+
     
