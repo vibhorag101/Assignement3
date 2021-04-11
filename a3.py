@@ -80,6 +80,8 @@ class Polygon(Shape):
         '''
         if dy is None:
             dy=dx
+        self.oldxcords=self.polyco[:,0]
+        self.oldycords=self.polyco[:,1]
         Shape.translate(self,dx,dy)
         transposematrix=np.transpose(self.T_t)
 
@@ -109,6 +111,8 @@ class Polygon(Shape):
             sy=sx
 
         Shape.scale(self,sx,sy)
+        self.oldxcords=self.polyco[:,0]
+        self.oldycords=self.polyco[:,1]
 
 
         self.columnsum=self.polyco.sum(axis=0)
@@ -150,6 +154,8 @@ class Polygon(Shape):
         '''
         
         Shape.rotate(self,deg)
+        self.oldxcords=self.polyco[:,0]
+        self.oldycords=self.polyco[:,1]
 
         self.newrotatex=self.polyco[:,0]-rx
 
@@ -192,7 +198,10 @@ class Polygon(Shape):
     
         This function does not return anything
         '''
-        pass
+        plt.plot(self.oldxcords,self.oldycords,linestyle="dashed")
+        plt.plot(self.polyco[:,0],self.polyco[:,1])
+        plt.show()
+        
 
 
 class Circle(Shape):
@@ -302,7 +311,8 @@ class Circle(Shape):
     
         This function does not return anything
         '''
-        pass
+        
+        
         
 
 if __name__ == "__main__":
