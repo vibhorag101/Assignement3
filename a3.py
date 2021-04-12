@@ -360,26 +360,34 @@ if __name__ == "__main__":
             querylist=input("enter query\n").split()
             if querylist[0]=="T":
                 if len(querylist)==2:
+                    print(np.array([menu.polyco[:,0],menu.polyco[:,1]]))
+                    # a=menu.translate(float(querylist[1]))
+                    # a.oldxcords
+                    # print(a.oldxcords,a.oldycords)
+                    
                     print(menu.translate(float(querylist[1])))
                 elif len(querylist)==3:
-                    print(menu.translate(float(querylist[1]),float(querylist[2])))
+                    print(np.array([menu.polyco[:,0],menu.polyco[:,1]]))
+
+
+                    print(np.array([menu.translate(float(querylist[1]),float(querylist[2]))]))
             
             elif querylist[0]=="R":
                 if len(querylist)==2:
+                    print(np.array([menu.polyco[:,0],menu.polyco[:,1]]))
+
                     print(menu.rotate(float(querylist[1])))
                 elif len(querylist)==3:
-                    print(menu.rotate(float(querylist[1]),float(querylist[2])))
+                    print(np.array([menu.polyco[:,0],menu.polyco[:,1]]))
+                    print(np.array([menu.rotate(float(querylist[1]),float(querylist[2]))]))
             elif querylist[0]=="S":
                 if len(querylist)==2:
-                    print(menu.scale(float(querylist[1])))
+                    print(np.array([menu.polyco[:,0],menu.polyco[:,1]]))
+                    print(np.array([menu.scale(float(querylist[1]))]))
                 if len(querylist)==3:
-                    print(menu.scale(float(querylist[1]),float(querylist[2])))
+                    print(np.array([menu.polyco[:,0],menu.polyco[:,1]]))
+                    print(np.array([menu.scale(float(querylist[1]),float(querylist[2]))]))
 
-            elif querylist[0]=="T":
-                if len(querylist)==2:
-                    print(menu.translate(float(querylist[1])))
-                elif len(querylist)==3:
-                    print(menu.translate(float(querylist[1],float[querylist[2]])))
             elif querylist[0]=="P":
                 menu.plot()
 
