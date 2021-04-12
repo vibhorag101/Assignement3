@@ -386,9 +386,9 @@ if __name__ == "__main__":
 
                 elif len(querylist)==4:
                     print(*np.array([*menu.polyco[:,0],*menu.polyco[:,1]]))
-                    menu.rotate(float(querylist[1]),float(querylist[2],float(querylist[3])))
+                    menu.rotate(float(querylist[1]),float(querylist[2]),float(querylist[3]))
                     print(*np.array([*menu.polyco[:,0],*menu.polyco[:,1]]))
-                    #todo Need to correct rotate for 4 inputs
+                    
                 
 
             elif querylist[0]=="S":
