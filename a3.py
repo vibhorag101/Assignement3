@@ -471,17 +471,17 @@ if __name__ == "__main__":
             querylist=input("enter query\n").split()
             if querylist[0]=="T":
                 if len(querylist)==2:
-                    print(menu.translate(float(querylist[1])))
+                    print(*menu.translate(float(querylist[1])))
                 elif len(querylist)==3:
-                    print(menu.translate(float(querylist[1]),float(querylist[2])))
+                    print(*menu.translate(float(querylist[1]),float(querylist[2])))
             
             elif querylist[0]=="R":
                 if len(querylist)==2:
-                    print(menu.rotate(float(querylist[1])))
+                    print(*menu.rotate(float(querylist[1])))
                 elif len(querylist)==3:
-                    print(menu.rotate(float(querylist[1]),float(querylist[2])))
+                    print(*menu.rotate(float(querylist[1]),float(querylist[2])))
             elif querylist[0]=="S":
-                print(menu.scale(float(querylist[1])))
+                print(*menu.scale(float(querylist[1])))
             elif querylist[0]=="P":
                 menu.plot()
 
