@@ -78,7 +78,6 @@ class Polygon(Shape):
         This function returns the final coordinates
 
         '''
-        print(self.polyco)
         if dy is None:
             dy=dx
         self.oldxcords=self.polyco[:,0]
@@ -204,6 +203,131 @@ class Polygon(Shape):
         plt.show()
         
 
-functiontest=Polygon(np.array([[1,2,1],[2,5,1],[3,6,1],[1,2,1]]))
-functiontest.translate(2,2)
-functiontest.plot()
+
+class Circle(Shape):
+    '''
+    Object of class Circle should be created when shape type is 'circle'
+    '''
+    def __init__(self, x=0, y=0, radius=5):
+        '''
+        Initializations here
+        '''
+        self.xcord=x
+        self.ycord=y
+        self.circlerad=radius
+        self.matrix=np.array([[self.xcord,self.ycord,1],[0,0,1],[0,0,1]])
+
+        
+
+
+
+
+    
+    def translate(self, dx, dy=None):
+        '''
+        Function to translate the circle
+    
+        This function takes 2 arguments: dx and dy (dy is optional).
+    
+        This function returns the final coordinates and the radius
+        '''
+        if dy is None:
+            dy=dx
+        self.circeloldcord=(self.xcord,self.ycord)
+        self.circleoldrad=self.circlerad
+        Shape.translate(self,dx,dy)
+        transposematrix=np.transpose(self.T_t)
+
+        transmatrix=np.dot(self.matrix,transposematrix)
+        xlist=np.round(transmatrix[:,0],2) #first column of matrix having changed x co-ordinates
+        ylist=np.round(transmatrix[:,1],2) #second column of matrix having changed y coordinates
+        self.matrix=np.column_stack((xlist,ylist,self.matrix[:,2]))
+        newxcord=transmatrix[0,0]
+        newycord=transmatrix[0,1]
+
+        return(np.round(newxcord,2),np.round(newycord,2),self.circlerad)
+
+        
+
+ 
+        
+    def scale(self, sx):
+        '''
+        Function to scale the circle
+    
+        This function takes 1 argument: sx
+    
+        This function returns the final coordinates and the radius
+        '''
+        self.circeloldcord=(self.xcord,self.ycord)
+        self.circleoldrad=self.circlerad
+        newradius=(self.circlerad)*sx
+        self.circlerad=newradius
+        return(np.round(self.matrix[0,0],2),np.round(self.matrix[0,1],2),round(newradius,2))
+ 
+    
+    def rotate(self, deg, rx = 0, ry = 0):
+        '''
+        Function to rotate the circle
+    
+        This function takes 3 arguments: deg, rx(optional), ry(optional). Default rx and ry = 0. (Rotate about origin)
+    
+        This function returns the final coordinates and the radius
+        '''
+        self.circeloldcord=(self.xcord,self.ycord)
+        self.circleoldrad=self.circlerad
+        Shape.rotate(self,deg)
+
+        self.newrotatex=self.matrix[:,0]-rx
+
+
+        self.newrotatey=self.matrix[:,1]-ry
+
+
+        # self.rotatefinalmatrix=np.array([self.newrotatex,self.newrotatey,self.polyco[2]])
+        self.rotatefinalmatrix=np.column_stack((self.newrotatex,self.newrotatey,self.matrix[:,2]))
+
+        
+        rotatematrix=np.dot(self.rotatefinalmatrix,np.transpose(self.T_r))
+        
+        self.polyco=rotatematrix
+        rotatexlist=(rotatematrix[:,0])+ rx # x coordinates by selection 1st column+cX
+        
+        rotateylist=(rotatematrix[:,1])+ ry # y coordinates by selcting 2nd column+ cY
+
+        self.matrix=np.column_stack((np.round(rotatexlist,2),np.round(rotateylist,2),self.matrix[:,2]))
+        
+
+
+        return(np.round(rotatexlist[0],2),np.round(rotateylist[0],2),self.circlerad)
+
+
+        
+ 
+    
+    def plot(self):
+        '''
+        Function to plot the circle
+    
+        This function should plot both the initial and the transformed circle
+    
+        This function should use the parent's class plot method as well
+    
+        This function does not take any input
+    
+        This function does not return anything
+        '''
+        circle = plt.Circle(self.circeloldcord,self.circleoldrad, color='g', fill=False,linestyle="dashed")
+        # fig, ax = plt.subplots()
+        circle2 = plt.Circle((float(self.matrix[0,0]),float(self.matrix[0,1])),self.circlerad, color='g', fill=False)
+        fig, ax = plt.subplots()   # returns figure layout and an array of axes for each subplot. Number of rows and columns can be specified as well.
+        ax.add_patch(circle)
+        ax.add_patch(circle2)
+        Shape.plot()
+        ax.set(xlim=(-20, 20), ylim = (-20, 20))
+        ax.set_aspect(1)
+        plt.show()
+
+s=Circle(0,0,5)
+s.scale(2)
+s.plot()

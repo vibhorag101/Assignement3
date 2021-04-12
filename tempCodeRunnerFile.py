@@ -1,2 +1,2 @@
-
-        self.polyco=np.column_stack((np.round(rotatexlist,2),np.round(rotateylist,2),self.polyco[:,2]))
+        # ax.set(xlim=(-200, 200), ylim = (-200, 200))
+        # ax.set_aspect(1)

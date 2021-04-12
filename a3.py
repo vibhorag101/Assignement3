@@ -380,6 +380,9 @@ if __name__ == "__main__":
                     print(menu.translate(float(querylist[1])))
                 elif len(querylist)==3:
                     print(menu.translate(float(querylist[1],float[querylist[2]])))
+            elif querylist[0]=="P":
+                menu.plot()
+
 
 
 
@@ -431,6 +434,8 @@ if __name__ == "__main__":
                 elif len(querylist)==3:
                     menu.translate(float(querylist[1],float[querylist[2]]))
                     menu.plot()
+            elif querylist[0]=="P":
+                menu.plot()
 
     if usershape==1 and userverbose==0:
 
@@ -454,7 +459,8 @@ if __name__ == "__main__":
                     print(menu.rotate(float(querylist[1]),float(querylist[2])))
             elif querylist[0]=="S":
                 print(menu.scale(float(querylist[1])))
-
+            elif querylist[0]=="P":
+                menu.plot()
 
     if usershape==1 and userverbose==1:
 
@@ -483,8 +489,10 @@ if __name__ == "__main__":
             elif querylist[0]=="S":
                 menu.scale(float(querylist[1]))
                 menu.plot()
+            elif querylist[0]=="P":
+                menu.plot()
 
-
+# TODO correct the circle code
 
 
 
