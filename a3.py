@@ -3,6 +3,7 @@ from unittest.main import main
 import numpy as np
 import matplotlib.pyplot as plt
 from numpy.core.fromnumeric import mean, shape, transpose
+from numpy.lib.polynomial import poly
 from numpy.testing import verbose
 # NO other imports are allowed
 
@@ -202,13 +203,22 @@ class Polygon(Shape):
         This function does not return anything
         '''
         n=len(self.oldxcords)
+        limitx=np.abs(self.polyco[:,0])
+        limity=np.abs(self.polyco[:,1])
+        maxx=np.max(limitx)+10
+        maxy=np.max(limity)+10
+        
+
 
         plt.plot(self.oldxcords,self.oldycords,linestyle="dashed",color="r")
         plt.plot(np.array([self.oldxcords[0],self.oldxcords[n-1]]),np.array([self.oldycords[0],self.oldycords[n-1]]),linestyle="dashed",color="r")
         plt.plot(self.polyco[:,0],self.polyco[:,1],color="b")
         plt.plot(np.array([self.polyco[0,0],self.polyco[n-1,0]]),np.array([self.polyco[0,1],self.polyco[n-1,1]]),color="b")
+        Shape.plot(self,maxx,maxy)
         
-        plt.show()
+
+        
+        # plt.show()
         
 
 
@@ -331,9 +341,15 @@ class Circle(Shape):
         fig, ax = plt.subplots()  
         ax.add_patch(circle)
         ax.add_patch(circle2)
-        ax.set(xlim=(-20, 20), ylim = (-20, 20))
-        ax.set_aspect(1)
-        plt.show()
+        maxx=abs(self.matrix[0,0])+10+self.circlerad
+        maxy=abs(self.matrix[0,1])+10+ self.circlerad
+        
+
+        Shape.plot(self,maxx,maxy)
+        
+        # ax.set_aspect(1)
+        # plt.show()
+
         
         
 
@@ -428,6 +444,7 @@ if __name__ == "__main__":
                 if len(querylist)==2:
                     menu.translate(float(querylist[1]))
                     menu.plot()
+                    # Shape.plot(finalcord,finalcord[polysides-2,0],finalcord[polysides-2,1]) # TODO IMPLMENT THE MAX CORD IN NPARRAY removed show in plot
                 elif len(querylist)==3:
                     menu.translate(float(querylist[1]),float(querylist[2]))
                     menu.plot()
