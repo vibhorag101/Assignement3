@@ -92,12 +92,12 @@ class Polygon(Shape):
         # add the calling function
 
         transmatrix= np.dot(self.polyco,transposematrix) #matrix multiplication done
-        xlist=np.round(transmatrix[:,0],2) #first column of matrix having changed x co-ordinates
-        ylist=np.round(transmatrix[:,1],2) #second column of matrix having changed y coordinates
+        xlist=transmatrix[:,0] #first column of matrix having changed x co-ordinates
+        ylist=transmatrix[:,1] #second column of matrix having changed y coordinates
 
         self.polyco=np.column_stack((xlist,ylist,self.polyco[:,2]))
 
-        return (xlist,ylist)
+        return (np.round(xlist,2),np.round(ylist,2))
 
 
         
@@ -317,7 +317,7 @@ class Circle(Shape):
         
         rotateylist=(rotatematrix[:,1])+ ry # y coordinates by selcting 2nd column+ cY
 
-        self.matrix=np.column_stack((np.round(rotatexlist,2),np.round(rotateylist,2),self.matrix[:,2]))
+        self.matrix=np.column_stack((rotatexlist,rotateylist,self.matrix[:,2]))
         
 
 
