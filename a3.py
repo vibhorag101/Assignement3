@@ -380,47 +380,47 @@ if __name__ == "__main__":
             querylist=input("enter query\n").split()
             if querylist[0]=="T":
                 if len(querylist)==2:
-                    print(*np.array([*menu.polyco[:,0],*menu.polyco[:,1]]))
+                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
                     menu.translate(float(querylist[1]))
-                    print(*np.array([*menu.polyco[:,0],*menu.polyco[:,1]]))
+                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
 
 
                 elif len(querylist)==3:
-                    print(*np.array([*menu.polyco[:,0],*menu.polyco[:,1]]))
+                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
                     menu.translate(float(querylist[1]),float(querylist[2]))
-                    print(*np.array([*menu.polyco[:,0],*menu.polyco[:,1]]))
+                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
 
             
             elif querylist[0]=="R":
                 if len(querylist)==2:
-                    print(*np.array([*menu.polyco[:,0],*menu.polyco[:,1]]))
+                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
                     menu.rotate(float(querylist[1]))
-                    print(*np.array([*menu.polyco[:,0],*menu.polyco[:,1]]))
+                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
 
                 
                 elif len(querylist)==3:
-                    print(*np.array([*menu.polyco[:,0],*menu.polyco[:,1]]))
+                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
                     menu.rotate(float(querylist[1]),float(querylist[2]))
-                    print(*np.array([*menu.polyco[:,0],*menu.polyco[:,1]]))
+                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
 
 
                 elif len(querylist)==4:
-                    print(*np.array([*menu.polyco[:,0],*menu.polyco[:,1]]))
+                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
                     menu.rotate(float(querylist[1]),float(querylist[2]),float(querylist[3]))
-                    print(*np.array([*menu.polyco[:,0],*menu.polyco[:,1]]))
+                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
                     
                 
 
             elif querylist[0]=="S":
                 if len(querylist)==2:
-                    print(*np.array([*menu.polyco[:,0],*menu.polyco[:,1]]))
+                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
                     menu.scale(float(querylist[1]))
-                    print(*np.array([*menu.polyco[:,0],*menu.polyco[:,1]]))
+                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
                     
                 if len(querylist)==3:
-                    print(*np.array([*menu.polyco[:,0],*menu.polyco[:,1]]))
+                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
                     menu.scale(float(querylist[1]),float(querylist[2]))
-                    print(*np.array([*menu.polyco[:,0],*menu.polyco[:,1]]))
+                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
                     
 
             elif querylist[0]=="P":
