@@ -143,7 +143,8 @@ class Polygon(Shape):
         scalematrix=np.dot(self.finalmatrix,self.T_s) # multiply A x scale matrix
         scalexlist=(scalematrix[:,0])+self.meanx # x coordinates by selection 1st column+cX
         scaleylist=scalematrix[:,1]+self.meany # y coordinates by selcting 2nd column+ cY
-        self.polyco=np.column_stack((np.round(scalexlist),np.round(scaleylist),self.polyco[:,2]))
+        # self.polyco=np.column_stack((np.round(scalexlist),np.round(scaleylist),self.polyco[:,2]))
+        self.polyco=np.column_stack((scalexlist,scaleylist,self.polyco[:,2]))
         return(np.round(scalexlist,2),np.round(scaleylist,2))
         # center part done
         
@@ -156,6 +157,8 @@ class Polygon(Shape):
     
         This function returns the final coordinates
         '''
+        if deg<0:
+            deg=360+deg
         
         Shape.rotate(self,deg)
         self.oldxcords=self.polyco[:,0]
@@ -173,7 +176,8 @@ class Polygon(Shape):
         rotatexlist=(rotatematrix[:,0])+ rx # x coordinates by selection 1st column+cX
         rotateylist=(rotatematrix[:,1])+ ry # y coordinates by selcting 2nd column+ cY
 
-        self.polyco=np.column_stack((np.round(rotatexlist,2),np.round(rotateylist,2),self.polyco[:,2]))
+        # self.polyco=np.column_stack((np.round(rotatexlist,2),np.round(rotateylist,2),self.polyco[:,2]))
+        self.polyco=np.column_stack((rotatexlist,rotateylist,self.polyco[:,2]))
 
 
         return(np.round(rotatexlist,2),np.round(rotateylist,2))
