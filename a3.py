@@ -362,184 +362,186 @@ if __name__ == "__main__":
     Add menu here as mentioned in the sample output section of the assignment document.
     '''
     userverbose=int(input("enter 0 if you dont want graph otherwise enter 1\n"))
-    usershape=int(input("enter 0 for polygon or 1 for circle\n"))
+    testcaseno=int(input("enter the number of test case\n"))
+    for no in range(testcaseno):
+        usershape=int(input("enter 0 for polygon or 1 for circle\n"))
 
-    if usershape==0 and userverbose==0:
-        mainlist=[]
-        polysides=int(input("enter the number of sides in the polygon\n"))
-        for i in range(polysides):
-            initlist=list(map(float,input("enter x y space seperated\n").split()))
-            initlist.append(1)
-            mainlist.append(initlist)
-        finalcord=np.array(mainlist)
-        menu=Polygon(finalcord)
-
-
-        userquery=int(input("enter the number of query you want to perform\n"))
-        for j in range(userquery):
-            querylist=input("enter query\n").split()
-            if querylist[0]=="T":
-                if len(querylist)==2:
-                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
-                    menu.translate(float(querylist[1]))
-                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
+        if usershape==0 and userverbose==0:
+            mainlist=[]
+            polysides=int(input("enter the number of sides in the polygon\n"))
+            for i in range(polysides):
+                initlist=list(map(float,input("enter x y space seperated\n").split()))
+                initlist.append(1)
+                mainlist.append(initlist)
+            finalcord=np.array(mainlist)
+            menu=Polygon(finalcord)
 
 
-                elif len(querylist)==3:
-                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
-                    menu.translate(float(querylist[1]),float(querylist[2]))
-                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
+            userquery=int(input("enter the number of query you want to perform\n"))
+            for j in range(userquery):
+                querylist=input("enter query\n").split()
+                if querylist[0]=="T":
+                    if len(querylist)==2:
+                        print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
+                        menu.translate(float(querylist[1]))
+                        print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
 
-            
-            elif querylist[0]=="R":
-                if len(querylist)==2:
-                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
-                    menu.rotate(float(querylist[1]))
-                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
+
+                    elif len(querylist)==3:
+                        print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
+                        menu.translate(float(querylist[1]),float(querylist[2]))
+                        print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
 
                 
-                elif len(querylist)==3:
-                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
-                    menu.rotate(float(querylist[1]),float(querylist[2]))
-                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
+                elif querylist[0]=="R":
+                    if len(querylist)==2:
+                        print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
+                        menu.rotate(float(querylist[1]))
+                        print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
 
-
-                elif len(querylist)==4:
-                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
-                    menu.rotate(float(querylist[1]),float(querylist[2]),float(querylist[3]))
-                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
                     
+                    elif len(querylist)==3:
+                        print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
+                        menu.rotate(float(querylist[1]),float(querylist[2]))
+                        print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
+
+
+                    elif len(querylist)==4:
+                        print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
+                        menu.rotate(float(querylist[1]),float(querylist[2]),float(querylist[3]))
+                        print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
+                        
+                    
+
+                elif querylist[0]=="S":
+                    if len(querylist)==2:
+                        print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
+                        menu.scale(float(querylist[1]))
+                        print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
+                        
+                    if len(querylist)==3:
+                        print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
+                        menu.scale(float(querylist[1]),float(querylist[2]))
+                        print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
+                        
+
+                elif querylist[0]=="P":
+                    menu.plot()
+
+
+
+
+
+        if usershape==0 and userverbose==1:
+            mainlist=[]
+            polysides=int(input("enter the number of sides in the polygon\n"))
+            for i in range(polysides):
+                initlist=list(map(float,input("enter x y space seperated\n").split()))
+                initlist.append(1)
+                mainlist.append(initlist)
+            finalcord=np.array(mainlist)
+            menu=Polygon(finalcord)
+
+
+            userquery=int(input("enter the number of query you want to perform\n"))
+            for j in range(userquery):
+                querylist=input("enter query\n").split()
+                if querylist[0]=="T":
+                    if len(querylist)==2:
+                        menu.translate(float(querylist[1]))
+                        menu.plot()
+                        # Shape.plot(finalcord,finalcord[polysides-2,0],finalcord[polysides-2,1]) # TODO IMPLMENT THE MAX CORD IN NPARRAY removed show in plot
+                    elif len(querylist)==3:
+                        menu.translate(float(querylist[1]),float(querylist[2]))
+                        menu.plot()
                 
+                elif querylist[0]=="R":
+                    if len(querylist)==2:
+                        menu.rotate(float(querylist[1]))
+                        menu.plot()
 
-            elif querylist[0]=="S":
-                if len(querylist)==2:
-                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
+                    elif len(querylist)==3:
+                        menu.rotate(float(querylist[1]),float(querylist[2]))
+                        menu.plot()
+
+                elif querylist[0]=="S":
+                    if len(querylist)==2:
+                        menu.scale(float(querylist[1]))
+                        menu.plot()
+
+                    if len(querylist)==3:
+                        menu.scale(float(querylist[1]),float(querylist[2]))
+                        menu.plot()
+
+                elif querylist[0]=="T":
+                    if len(querylist)==2:
+                        menu.translate(float(querylist[1]))
+                        menu.plot()
+                    elif len(querylist)==3:
+                        menu.translate(float(querylist[1],float[querylist[2]]))
+                        menu.plot()
+                elif querylist[0]=="P":
+                    menu.plot()
+
+        if usershape==1 and userverbose==0:
+
+            initlist=list(map(float,input("enter a b r space seperated\n").split()))
+            menu=Circle(initlist[0],initlist[1],initlist[2])
+
+
+            userquery=int(input("enter the number of query you want to perform\n"))
+            for j in range(userquery):
+                querylist=input("enter query\n").split()
+                if querylist[0]=="T":
+                    if len(querylist)==2:
+                        print(*[menu.xcord,menu.ycord,menu.circlerad])
+                        print(*menu.translate(float(querylist[1])))
+                    elif len(querylist)==3:
+                        print(*[menu.xcord,menu.ycord,menu.circlerad])
+                        print(*menu.translate(float(querylist[1]),float(querylist[2])))
+                
+                elif querylist[0]=="R":
+                    if len(querylist)==2:
+                        print(*[menu.xcord,menu.ycord,menu.circlerad])
+                        print(*menu.rotate(float(querylist[1])))
+                    elif len(querylist)==3:
+                        print(*[menu.xcord,menu.ycord,menu.circlerad])
+                        print(*menu.rotate(float(querylist[1]),float(querylist[2])))
+                elif querylist[0]=="S":
+                    print(*[menu.xcord,menu.ycord,menu.circlerad])
+                    print(*menu.scale(float(querylist[1])))
+                elif querylist[0]=="P":
+                    menu.plot()
+
+        if usershape==1 and userverbose==1:
+
+            initlist=list(map(float,input("enter a b r space seperated\n").split()))
+            menu=Circle(initlist[0],initlist[1],initlist[2])
+
+
+            userquery=int(input("enter the number of query you want to perform\n"))
+            for j in range(userquery):
+                querylist=input("enter query\n").split()
+                if querylist[0]=="T":
+                    if len(querylist)==2:
+                        menu.translate(float(querylist[1]))
+                        menu.plot()
+                    elif len(querylist)==3:
+                        menu.translate(float(querylist[1]),float(querylist[2]))
+                        menu.plot()
+                
+                elif querylist[0]=="R":
+                    if len(querylist)==2:
+                        menu.rotate(float(querylist[1]))
+                        menu.plot()
+                    elif len(querylist)==3:
+                        menu.rotate(float(querylist[1]),float(querylist[2]))
+                        menu.plot()
+                elif querylist[0]=="S":
                     menu.scale(float(querylist[1]))
-                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
-                    
-                if len(querylist)==3:
-                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
-                    menu.scale(float(querylist[1]),float(querylist[2]))
-                    print(*np.round(np.array([*menu.polyco[:,0],*menu.polyco[:,1]]),2))
-                    
-
-            elif querylist[0]=="P":
-                menu.plot()
-
-
-
-
-
-    if usershape==0 and userverbose==1:
-        mainlist=[]
-        polysides=int(input("enter the number of sides in the polygon\n"))
-        for i in range(polysides):
-            initlist=list(map(float,input("enter x y space seperated\n").split()))
-            initlist.append(1)
-            mainlist.append(initlist)
-        finalcord=np.array(mainlist)
-        menu=Polygon(finalcord)
-
-
-        userquery=int(input("enter the number of query you want to perform\n"))
-        for j in range(userquery):
-            querylist=input("enter query\n").split()
-            if querylist[0]=="T":
-                if len(querylist)==2:
-                    menu.translate(float(querylist[1]))
                     menu.plot()
-                    # Shape.plot(finalcord,finalcord[polysides-2,0],finalcord[polysides-2,1]) # TODO IMPLMENT THE MAX CORD IN NPARRAY removed show in plot
-                elif len(querylist)==3:
-                    menu.translate(float(querylist[1]),float(querylist[2]))
+                elif querylist[0]=="P":
                     menu.plot()
-            
-            elif querylist[0]=="R":
-                if len(querylist)==2:
-                    menu.rotate(float(querylist[1]))
-                    menu.plot()
-
-                elif len(querylist)==3:
-                    menu.rotate(float(querylist[1]),float(querylist[2]))
-                    menu.plot()
-
-            elif querylist[0]=="S":
-                if len(querylist)==2:
-                    menu.scale(float(querylist[1]))
-                    menu.plot()
-
-                if len(querylist)==3:
-                    menu.scale(float(querylist[1]),float(querylist[2]))
-                    menu.plot()
-
-            elif querylist[0]=="T":
-                if len(querylist)==2:
-                    menu.translate(float(querylist[1]))
-                    menu.plot()
-                elif len(querylist)==3:
-                    menu.translate(float(querylist[1],float[querylist[2]]))
-                    menu.plot()
-            elif querylist[0]=="P":
-                menu.plot()
-
-    if usershape==1 and userverbose==0:
-
-        initlist=list(map(float,input("enter a b r space seperated\n").split()))
-        menu=Circle(initlist[0],initlist[1],initlist[2])
-
-
-        userquery=int(input("enter the number of query you want to perform\n"))
-        for j in range(userquery):
-            querylist=input("enter query\n").split()
-            if querylist[0]=="T":
-                if len(querylist)==2:
-                    print(*[menu.xcord,menu.ycord,menu.circlerad])
-                    print(*menu.translate(float(querylist[1])))
-                elif len(querylist)==3:
-                    print(*[menu.xcord,menu.ycord,menu.circlerad])
-                    print(*menu.translate(float(querylist[1]),float(querylist[2])))
-            
-            elif querylist[0]=="R":
-                if len(querylist)==2:
-                    print(*[menu.xcord,menu.ycord,menu.circlerad])
-                    print(*menu.rotate(float(querylist[1])))
-                elif len(querylist)==3:
-                    print(*[menu.xcord,menu.ycord,menu.circlerad])
-                    print(*menu.rotate(float(querylist[1]),float(querylist[2])))
-            elif querylist[0]=="S":
-                print(*[menu.xcord,menu.ycord,menu.circlerad])
-                print(*menu.scale(float(querylist[1])))
-            elif querylist[0]=="P":
-                menu.plot()
-
-    if usershape==1 and userverbose==1:
-
-        initlist=list(map(float,input("enter a b r space seperated\n").split()))
-        menu=Circle(initlist[0],initlist[1],initlist[2])
-
-
-        userquery=int(input("enter the number of query you want to perform\n"))
-        for j in range(userquery):
-            querylist=input("enter query\n").split()
-            if querylist[0]=="T":
-                if len(querylist)==2:
-                    menu.translate(float(querylist[1]))
-                    menu.plot()
-                elif len(querylist)==3:
-                    menu.translate(float(querylist[1]),float(querylist[2]))
-                    menu.plot()
-            
-            elif querylist[0]=="R":
-                if len(querylist)==2:
-                    menu.rotate(float(querylist[1]))
-                    menu.plot()
-                elif len(querylist)==3:
-                    menu.rotate(float(querylist[1]),float(querylist[2]))
-                    menu.plot()
-            elif querylist[0]=="S":
-                menu.scale(float(querylist[1]))
-                menu.plot()
-            elif querylist[0]=="P":
-                menu.plot()
 
 # TODO correct the circle code
 
