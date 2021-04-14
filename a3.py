@@ -283,7 +283,7 @@ class Circle(Shape):
         '''
         self.circeloldcord=(self.xcord,self.ycord)
         self.circleoldrad=self.circlerad
-        newradius=(self.circlerad)*sx
+        newradius=abs((self.circlerad)*sx)
         self.circlerad=newradius
         return(np.round(self.matrix[0,0],2),np.round(self.matrix[0,1],2),round(newradius,2))
  
@@ -450,7 +450,7 @@ if __name__ == "__main__":
                     if len(querylist)==2:
                         menu.translate(float(querylist[1]))
                         menu.plot()
-                        # Shape.plot(finalcord,finalcord[polysides-2,0],finalcord[polysides-2,1]) # TODO IMPLMENT THE MAX CORD IN NPARRAY removed show in plot
+                        # Shape.plot(finalcord,finalcord[polysides-2,0],finalcord[polysides-2,1]) 
                     elif len(querylist)==3:
                         menu.translate(float(querylist[1]),float(querylist[2]))
                         menu.plot()
@@ -543,7 +543,7 @@ if __name__ == "__main__":
                 elif querylist[0]=="P":
                     menu.plot()
 
-# TODO correct the circle code
+
 
 
 
